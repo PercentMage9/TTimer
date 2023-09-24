@@ -26,9 +26,9 @@ TTimer is a work in progress, and I have some exciting features in the pipeline:
 
 ## Getting Started
 
-1. **Download**: Clone or download the TTimer repository to your local machine.
+1. **Download**: Download a release to your local machine.
 
-2. **Run the Application**: Double-click the executable file to launch TTimer.
+2. **Run the Application**: Extract and double-click the executable file to launch TTimer.
 
 3. **Enjoy**: Start using TTimer to enhance your time management with a touch of style.
 

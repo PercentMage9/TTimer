@@ -14,7 +14,7 @@ Welcome to TTimer, a sleek and versatile Windows desktop timer with a cool smoke
 
 ## Planned Features
 
-TTimer is a work in progress, and we have some exciting features in the pipeline:
+TTimer is a work in progress, and I have some exciting features in the pipeline:
 
 - **Multiple Themes**: Customize your timer with a variety of themes to match your personal style and preferences.
 
@@ -34,7 +34,7 @@ TTimer is a work in progress, and we have some exciting features in the pipeline
 
 ## Feedback and Contributions
 
-We welcome your feedback and contributions to make TTimer even better. If you encounter issues, have suggestions, or want to contribute to its development, please check out our [Contribution Guidelines](CONTRIBUTING.md).
+I welcome your feedback and contributions to make TTimer even better. If you encounter issues, have suggestions, or want to contribute to its development, please check out our [Contribution Guidelines](CONTRIBUTING.md).
 
 ## License
 
@@ -44,4 +44,4 @@ This project is licensed under the [GNU General Public License, version 3](LICEN
 
 For any questions, suggestions, or support requests, feel free to reach out to [Ava Sutcliffe](https://github.com/PercentMage9) (GitHub user: PercentMage9).
 
-Thank you for choosing TTimer! We hope it enhances your productivity and adds a touch of elegance to your time management.
+Thank you for choosing TTimer! I hope it enhances your productivity and adds a touch of elegance to your time management.

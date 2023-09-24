@@ -1,4 +1,3 @@
-using Palmmedia.ReportGenerator.Core.Reporting.Builders;
 using UnityEngine;
 
 public class CameraShake : MonoBehaviour
@@ -21,7 +20,7 @@ public class CameraShake : MonoBehaviour
 
     private void Update()
     {
-        if(shakeEnabled == true)
+        if (shakeEnabled == true)
         {
             float wobbleX = Mathf.Sin(Time.time * wobbleSpeed) * wobbleAmount;
             float wobbleY = Mathf.Sin(Time.time * wobbleSpeed * 2) * (wobbleAmount / 2);
@@ -42,7 +41,7 @@ public class CameraShake : MonoBehaviour
         {
             transform.position = pivotPoint.position;
         }
-        
+
     }
 
     public void ToggleShake()

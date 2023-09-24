@@ -6,18 +6,30 @@ public class Timer : MonoBehaviour
 {
     public TMP_InputField timeInputField;
     public Button startButton;
+    public Button pausePlayButton;
+    public Button resetButton;
     public TextMeshProUGUI countdownText;
     public Slider timerSlider;
+
+    public Sprite playSprite;
+    public Sprite pauseSprite;
 
     private float currentTime;
     private float totalTime;
     private bool isRunning;
+    private Image pausePlayImage;
+
+    private void Awake()
+    {
+        pausePlayImage = pausePlayButton.GetComponent<Image>();
+    }
 
     private void Start()
     {
         startButton.onClick.AddListener(StartTimer);
+        pausePlayButton.onClick.AddListener(TogglePausePlay);
+        resetButton.onClick.AddListener(ResetTimer);
         timerSlider.onValueChanged.AddListener(UpdateCurrentTime);
-        ResetTimer();
     }
 
     private void Update()
@@ -30,13 +42,15 @@ public class Timer : MonoBehaviour
             {
                 currentTime = 0f;
                 isRunning = false;
+                pausePlayButton.interactable = false;
+                TogglePausePlay();
             }
 
             UpdateUI();
         }
     }
 
-    public void StartTimer()
+    private void StartTimer()
     {
         if (!isRunning)
         {
@@ -49,18 +63,36 @@ public class Timer : MonoBehaviour
                     currentTime = totalTime;
                     isRunning = true;
                     timerSlider.interactable = true;
+                    pausePlayButton.interactable = true;
+                    pausePlayImage.sprite = pauseSprite;
                 }
                 else
                 {
                     Debug.LogError("Time input must be greater than 00:00");
                     timerSlider.interactable = false;
+                    pausePlayButton.interactable = false;
                 }
             }
             else
             {
-                Debug.LogError("Invalid input in input field");
+                Debug.LogError("Invalid input");
                 timerSlider.interactable = false;
+                pausePlayButton.interactable = false;
             }
+        }
+    }
+
+    public void TogglePausePlay()
+    {
+        if (isRunning)
+        {
+            isRunning = false;
+            pausePlayImage.sprite = playSprite;
+        }
+        else if (currentTime > 0f)
+        {
+            isRunning = true;
+            pausePlayImage.sprite = pauseSprite;
         }
     }
 
@@ -78,6 +110,8 @@ public class Timer : MonoBehaviour
     {
         currentTime = totalTime * (1f - sliderValue / 100f);
         UpdateUI();
+
+        pausePlayButton.interactable = currentTime > 0f;
     }
 
     public void ResetTimer()
@@ -89,5 +123,7 @@ public class Timer : MonoBehaviour
         totalTime = 0f;
         isRunning = false;
         timerSlider.interactable = false;
+        pausePlayButton.interactable = false;
+        pausePlayImage.sprite = playSprite;
     }
 }

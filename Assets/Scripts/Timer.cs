@@ -28,7 +28,6 @@ public class Timer : MonoBehaviour
 
             if (currentTime <= 0f)
             {
-                // Timer is now 00:00
                 currentTime = 0f;
                 isRunning = false;
             }
@@ -37,7 +36,7 @@ public class Timer : MonoBehaviour
         }
     }
 
-    private void StartTimer()
+    public void StartTimer()
     {
         if (!isRunning)
         {
@@ -45,12 +44,22 @@ public class Timer : MonoBehaviour
             if (timeParts.Length == 2 && int.TryParse(timeParts[0], out int minutes) && int.TryParse(timeParts[1], out int seconds))
             {
                 totalTime = Mathf.Max(0f, minutes * 60 + seconds);
-                currentTime = totalTime;
-                isRunning = true;
+                if (totalTime > 0f)
+                {
+                    currentTime = totalTime;
+                    isRunning = true;
+                    timerSlider.interactable = true;
+                }
+                else
+                {
+                    Debug.LogError("Time input must be greater than 00:00");
+                    timerSlider.interactable = false;
+                }
             }
             else
             {
-                Debug.LogError("Invalid input");
+                Debug.LogError("Invalid input in input field");
+                timerSlider.interactable = false;
             }
         }
     }
@@ -71,7 +80,7 @@ public class Timer : MonoBehaviour
         UpdateUI();
     }
 
-    private void ResetTimer()
+    public void ResetTimer()
     {
         timeInputField.text = "";
         countdownText.text = "00:00";
@@ -79,5 +88,6 @@ public class Timer : MonoBehaviour
         currentTime = 0f;
         totalTime = 0f;
         isRunning = false;
+        timerSlider.interactable = false;
     }
 }

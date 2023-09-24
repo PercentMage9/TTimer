@@ -14,17 +14,14 @@ public class Timer : MonoBehaviour
     public Sprite playSprite;
     public Sprite pauseSprite;
 
-    public BackgroundMusic backgroundMusic; // Reference to the BackgroundMusic script
-
     private float currentTime;
     private float totalTime;
-    private bool isRunning;
+    public bool isRunning;
     private Image pausePlayImage;
 
     private void Awake()
     {
         pausePlayImage = pausePlayButton.GetComponent<Image>();
-        backgroundMusic = FindObjectOfType<BackgroundMusic>(); // Find the BackgroundMusic script in the scene
     }
 
     private void Start()
@@ -90,15 +87,12 @@ public class Timer : MonoBehaviour
         if (isRunning)
         {
             isRunning = false;
-            backgroundMusic.PauseMusic(); // Pause the music when the timer is paused
         }
         else if (currentTime > 0f || currentTime == totalTime)
         {
             isRunning = true;
-            backgroundMusic.PlayMusic(); // Play the music when the timer is resumed
         }
 
-        // Update the pause button's sprite immediately after changing the state
         pausePlayImage.sprite = isRunning ? pauseSprite : playSprite;
     }
 

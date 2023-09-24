@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,10 +6,10 @@ public class BackgroundMusic : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip[] musicTracks;
     public Slider volumeSlider;
-    public TextMeshProUGUI countdownText;
 
     private int currentTrackIndex = -1;
-    private bool isPaused = false;
+
+    public Timer timerScript;
 
     private void Start()
     {
@@ -25,7 +24,7 @@ public class BackgroundMusic : MonoBehaviour
 
     private void Update()
     {
-        if (isPaused)
+        if (timerScript.isRunning == false)
         {
             audioSource.Pause();
         }
@@ -48,31 +47,5 @@ public class BackgroundMusic : MonoBehaviour
     public void UpdateVolume(float volume)
     {
         audioSource.volume = volume;
-    }
-
-    public void TogglePause()
-    {
-        isPaused = !isPaused;
-        if (isPaused)
-        {
-            audioSource.Pause();
-        }
-        else
-        {
-            audioSource.Play();
-        }
-    }
-
-    // Add the PlayMusic and PauseMusic methods
-    public void PlayMusic()
-    {
-        isPaused = false;
-        audioSource.Play();
-    }
-
-    public void PauseMusic()
-    {
-        isPaused = true;
-        audioSource.Pause();
     }
 }

@@ -10,17 +10,17 @@ Welcome to TTimer, a sleek and versatile Windows desktop timer with a cool smoke
 
 - **Simple Functionality**: TTimer provides basic timer functionalities, including setting, resetting, and seeking, to cater to your time management needs.
 
-- **Scalable Window**: Resize the timer window to your preferred size, ensuring it fits seamlessly into your workspace.
+- **Scalable Window**: Resize the timer window to your preferred size, ensuring it fits seamlessly into your workspace, or even make it fullscreen.
+
+- **In-App Volume Adjustment**: Control the background music volume directly within the application, helping to quickly adjust when needed.
 
 ## Planned Features
 
 TTimer is a work in progress, and I have some exciting features in the pipeline:
 
+-  **Alarm Sound**: The program will be able to play a beeping tone once it reaches 00:00.
+
 - **Multiple Themes**: Customize your timer with a variety of themes to match your personal style and preferences.
-
-- **In-App Volume Adjustment**: Control timer alert sounds directly within the application, ensuring you never miss an alert or get disturbed when you don't want to.
-
-- **Music Track Selection**: Choose your favorite music track to play alongside your timer, creating a personalized and immersive timer experience.
 
 - **Linux Support**: We are actively working on bringing TTimer to Linux, so you can enjoy its features on your preferred operating system.
 

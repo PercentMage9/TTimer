@@ -1929,7 +1929,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: dd742c4774e9dc34a946d23b56bb7815, type: 3}
   - {fileID: 8300000, guid: 8c2d1385738c6dd4894949a1ad101cb3, type: 3}
   volumeSlider: {fileID: 941443847}
-  countdownText: {fileID: 583630911}
   timerScript: {fileID: 1126195359}
 --- !u!1 &974832738
 GameObject:

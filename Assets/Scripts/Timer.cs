@@ -10,13 +10,11 @@ public class Timer : MonoBehaviour
     public Button resetButton;
     public TextMeshProUGUI countdownText;
     public Slider timerSlider;
-
     public Sprite playSprite;
     public Sprite pauseSprite;
-
+    public bool isRunning;
     private float currentTime;
     private float totalTime;
-    public bool isRunning;
     private Image pausePlayImage;
 
     private void Awake()
@@ -26,7 +24,7 @@ public class Timer : MonoBehaviour
 
     private void Start()
     {
-        startButton.onClick.AddListener(StartTimer);
+        startButton.onClick.AddListener(() => StartTimer(timeInputField.text));
         pausePlayButton.onClick.AddListener(TogglePausePlay);
         resetButton.onClick.AddListener(ResetTimer);
         timerSlider.onValueChanged.AddListener(UpdateCurrentTime);
@@ -52,33 +50,36 @@ public class Timer : MonoBehaviour
 
     public void StartTimer()
     {
-        if (!isRunning)
+        StartTimer(timeInputField.text);
+    }
+
+    public void StartTimer(string formattedTime)
+    {
+        string[] timeParts = formattedTime.Split(':');
+        if (timeParts.Length == 2 && int.TryParse(timeParts[0], out int minutes) && int.TryParse(timeParts[1], out int seconds))
         {
-            string[] timeParts = timeInputField.text.Split(':');
-            if (timeParts.Length == 2 && int.TryParse(timeParts[0], out int minutes) && int.TryParse(timeParts[1], out int seconds))
+            totalTime = Mathf.Max(0f, minutes * 60 + seconds);
+            if (totalTime > 0f)
             {
-                totalTime = Mathf.Max(0f, minutes * 60 + seconds);
-                if (totalTime > 0f)
-                {
-                    currentTime = totalTime;
-                    isRunning = true;
-                    timerSlider.interactable = true;
-                    pausePlayButton.interactable = true;
-                    pausePlayImage.sprite = pauseSprite;
-                }
-                else
-                {
-                    Debug.LogError("Time input must be greater than 00:00");
-                    timerSlider.interactable = false;
-                    pausePlayButton.interactable = false;
-                }
+                currentTime = totalTime;
+                isRunning = true;
+                timerSlider.interactable = true;
+                pausePlayButton.interactable = true;
+                pausePlayImage.sprite = pauseSprite;
+                UpdateUI();
             }
             else
             {
-                Debug.LogError("Invalid input");
+                Debug.LogError("Time input must be greater than 00:00");
                 timerSlider.interactable = false;
                 pausePlayButton.interactable = false;
             }
+        }
+        else
+        {
+            Debug.LogError("Invalid input");
+            timerSlider.interactable = false;
+            pausePlayButton.interactable = false;
         }
     }
 

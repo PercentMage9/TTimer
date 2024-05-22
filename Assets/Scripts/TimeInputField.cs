@@ -6,6 +6,7 @@ public class TimeInputField : MonoBehaviour
 {
     private TMP_InputField inputField;
     private Timer timer;
+    private const int MaxTimeInSeconds = 3599; // 59:59
 
     private void Start()
     {
@@ -29,20 +30,30 @@ public class TimeInputField : MonoBehaviour
         {
             return "00:00";
         }
-        else if (numericInput.Length <= 2)
+
+        int totalTimeInSeconds;
+
+        if (numericInput.Length <= 2)
         {
-            int seconds = int.Parse(numericInput);
-            return string.Format("{0:00}:{1:00}", 0, seconds);
+            totalTimeInSeconds = int.Parse(numericInput);
         }
         else if (numericInput.Length <= 4)
         {
             int seconds = int.Parse(numericInput.Substring(numericInput.Length - 2));
             int minutes = int.Parse(numericInput.Substring(0, numericInput.Length - 2));
-            return string.Format("{0:00}:{1:00}", minutes, seconds);
+            totalTimeInSeconds = minutes * 60 + seconds;
         }
         else
         {
-            return "00:00";
+            int seconds = int.Parse(numericInput.Substring(numericInput.Length - 2));
+            int minutes = int.Parse(numericInput.Substring(numericInput.Length - 4, 2));
+            totalTimeInSeconds = minutes * 60 + seconds;
         }
+
+        totalTimeInSeconds = Mathf.Min(totalTimeInSeconds, MaxTimeInSeconds);
+
+        int finalMinutes = totalTimeInSeconds / 60;
+        int finalSeconds = totalTimeInSeconds % 60;
+        return string.Format("{0:00}:{1:00}", finalMinutes, finalSeconds);
     }
 }
